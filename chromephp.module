@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Flip a switch to enable chromephp.php on your Drupal site.
+ */
+
+define('CHROME_PATH', drupal_get_path('module', 'chromephp'));
+
+/**
+ * Implements hook_permission().
+ */
+function chromephp_permission() {
+  return array(
+    'use chromephp' => array(
+      'title' => t('Use ChromePhp'),
+      'description' => t('Enables use of the chromephp.php library.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_init().
+ */
+function chromephp_init() {
+  global $user;
+  if (user_access('use chromephp')) {
+    include_once(CHROMEPHP_PATH . '/lib/ChromePhp.php');
+    ChromePhp::log(__FUNCTION__);
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+/*function chromephp_menu() {
+  return array(
+
+  );
+}*/

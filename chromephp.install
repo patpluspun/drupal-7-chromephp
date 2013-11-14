@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the chromephp module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function chromephp_install() {
+  db_update('system')
+    ->fields(array(
+          'weight' => 10,
+          ))
+    ->condition('type', 'module')
+    ->condition('name', 'chromephp')
+    ->execute();
+}
+
