@@ -42,6 +42,13 @@ function cpm($var = 'ChromePhp is working.') {
 }
 
 /**
+ * Outputs a warning.
+ */
+function cpw($message = 'A warning.') {
+  return ChromePhp::warn($message);
+}
+
+/**
  * Implements hook_menu().
  */
 /*function chromephp_menu() {

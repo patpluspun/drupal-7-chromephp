@@ -8,7 +8,9 @@ First you must acquire this library through some means: [ChromePhp](https://gith
 Then create a folder named "ChromePhp" in your sites/all/libraries directory.  If sites/all/libraries does not exist,
 create it.
 
-Ensure that ChromePhp.php is directly inside the ChromePhp folder and enabled the module!
+Ensure that ChromePhp.php is directly inside the ChromePhp folder and enable the module.
+
+Add the browser plugin for Chrome: [Chromelogger](https://chrome.google.com/webstore/detail/chrome-logger/noaneddfkdjfnfdakjjmocngnfkfehhd).
 
 It comes with one function for now, `cpm()` that works much like `dpm()` except it prints to the console instead of Drupal's
 messages area.
