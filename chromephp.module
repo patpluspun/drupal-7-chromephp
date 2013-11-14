@@ -4,7 +4,7 @@
  * Flip a switch to enable chromephp.php on your Drupal site.
  */
 
-define('CHROME_PATH', drupal_get_path('module', 'chromephp'));
+define('CHROMEPHP_PATH', drupal_get_path('module', 'chromephp'));
 
 /**
  * Implements hook_permission().
@@ -22,11 +22,23 @@ function chromephp_permission() {
  * Implements hook_init().
  */
 function chromephp_init() {
-  global $user;
   if (user_access('use chromephp')) {
-    include_once(CHROMEPHP_PATH . '/lib/ChromePhp.php');
-    ChromePhp::log(__FUNCTION__);
+    if (!class_exists('ChromePhp')) {
+      $path = function_exists('libraries_get_path') ? libraries_get_path('ChromePhp') : 'sites/all/libraries/ChromePhp';
+      if (!include($path . '/ChromePhp.php')) {
+        $tokens = array('!path' => $path);
+        $message = t('ChromePhp.php library was not found in !path. Please ensure the library exists in sites/all/libraries/ChromePhp.', $tokens);
+        drupal_set_message($message);
+      }
+    }
   }
+}
+
+/**
+ * Outputs a variable to console.
+ */
+function cpm($var = 'ChromePhp is working.') {
+  return ChromePhp::log($var);
 }
 
 /**
